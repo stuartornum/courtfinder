@@ -2,10 +2,13 @@ package uk.gov.justice.digital.courtfinder.pages;
 
 
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByCssSelector;
 import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
@@ -22,6 +25,22 @@ public class CourtFinderSearchPage extends SeleniumPage {
 	
 	private By areaOfLawErrorText = new By.ByCssSelector(".error-text");
 	private String expectedAreaOfLawErrorText = "You must select an area of law";
+	
+	private By resultsFromPartailNameEntry = new By.ByXPath(".//*[@id='results']/ul/li");
+	private String resultsFromPartialNameEntryLink = ".//*[@id='results']/ul/li[%d]/a";
+	
+	
+	public void setResultFromPartialNameEntryByName(String courtOrTribunalName) throws Exception{
+		waitToGetElement(resultsFromPartailNameEntry, HTTP_TIMEOUT);
+		List<WebElement> elements = getElements(resultsFromPartailNameEntry);
+		for (int index= 0; index < elements.size(); index++){
+			if (elements.get(index).getText().equalsIgnoreCase(courtOrTribunalName)){
+				click(new By.ByXPath(String.format(resultsFromPartialNameEntryLink,index+1)));
+				return;
+			}
+		}
+		throw new Exception("No such court or tribunal in result list found that is named : " + courtOrTribunalName);
+	}
 	
 	public boolean verifyareaOfLawErrorText() throws Exception{
 		return isTextContainedInInnerText(areaOfLawErrorText, expectedAreaOfLawErrorText);

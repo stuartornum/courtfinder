@@ -24,13 +24,8 @@ public class FullPostcodeSearchSteps {
 		journeyFactory = new JourneyFactory(driver);
 	}
 	
-	@Given("^I am on the courtfinder search page$")
-	public void i_am_on_the_courtfinder_search_page() throws Throwable {
-	    journeyFactory.getCourtFinderSearchPageJourney();
-	    assertTrue(PageFactory.getCourtFinderSearchPage(driver).verifyOnPage());
-	}
 
-	@When("^I enter a \"(.*?)\" and area of \"(.*?)\"$")
+	@When("^I enter (?:a Northern Ireland postcode|a postcode|an invalid postcode|an exact postcode) \"(.*?)\" (?:with an area|and area) of law \"(.*?)\"$")
 	public void i_enter_a_and_area_of(String postcode, String areaOfLaw) throws Throwable {
 	    CourtFinderSearchPage page = PageFactory.getCourtFinderSearchPage(driver);
 	    page.setSearchText(postcode);
@@ -78,10 +73,37 @@ public class FullPostcodeSearchSteps {
 	    PageFactory.getCourtFinderSearchPage(driver).clickSearchButton();
 	}
 
-	@Then("^I am prompted that an area of search must be entered$")
+	@Then("^I am prompted that an area of law must be entered$")
 	public void i_am_prompted_that_an_area_of_search_must_be_entered() throws Throwable {
 	    assertTrue(PageFactory.getCourtFinderSearchPage(driver).verifyareaOfLawErrorText());
 	}
+	
+	@When("^select view details for \"(.*?)\"$")
+	public void select_view_details_for(String court) throws Throwable {
+	    PageFactory.getCourtFinderSearchResultPage(driver).clickViewDetailsLink(court);
+	}
+
+	@Then("^I am redirected to the \"(.*?)\" details page$")
+	public void i_am_redirected_to_the_details_page(String court) throws Throwable {
+	    assertTrue(PageFactory.getCourtDetailsPage(driver).verifyOnPage(court));
+	}
+	
+	@Then("^the total number of results (\\d+) should be displayed$")
+	public void the_total_number_of_results_should_be_displayed(int result) throws Throwable {
+		int numberOfResults = PageFactory.getCourtFinderSearchResultPage(driver).getNumberOfCourtResults();
+	    assertTrue("Expected: "+ result +" Actual : " +numberOfResults, numberOfResults == result);
+	}
+	@Then("^I am prompted that no search results for \"(.*?)\" could not be found$")
+	public void i_prompted_that_no_search_results_for_postcode_could_be_found(String postcode) throws Throwable {
+	    assertTrue(PageFactory.getCourtFinderSearchResultPage(driver).verifyErrorDisplayedForInvalidCourtOrPostcode(postcode));
+	}
+	
+	@Then("^I am prompted that the postcode could not be found$")
+	public void i_prompted_that_the_postcode_could_not_be_found() throws Throwable {
+	    assertTrue(PageFactory.getCourtFinderSearchResultPage(driver).verifyErrorDisplayedForInvalidPostcode());
+
+	}
+	
 	
 	
 
