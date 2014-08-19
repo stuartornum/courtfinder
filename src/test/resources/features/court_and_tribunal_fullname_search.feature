@@ -1,7 +1,8 @@
+ @todo
 Feature: As a user I need to search for a court by name
          So I can view the full details of the services and amenities it offers
  
-       
+ @needtoclarify    
  Scenario Outline: Entering a valid court/tribunal name and area of law returns the court/tribunal details page
 
           Given I am on the courtfinder search page
@@ -14,7 +15,7 @@ Feature: As a user I need to search for a court by name
           |Central Family Court |Adoption         |
  
  
- @todo
+
   Scenario Outline: When I start to type the name of a court  
                     a list of possible courts and tribunals 
                     matching the entry appears from which I can choose
@@ -28,4 +29,4 @@ Feature: As a user I need to search for a court by name
           |PartialName  |CourtOrTribunal                           | 
           |aber         |Aberdeen Tribunal Hearing Centre          |         
           |Car          |Cardiff Probate Registry of Wales         |
-          |ta           |Tameside County Court and Family Court    |
+          |tam          |Tameside County Court and Family Court    |

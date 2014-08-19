@@ -1,4 +1,4 @@
-   
+ @todo 
 Feature: As a user I need to be able to make a postcode and area of law search 
          so that it will give a list of the closest court/tribunals 
          regardless of jurisdiction
@@ -122,7 +122,7 @@ Scenario Outline: The number of results found for a postcode search should be di
           |CD2                 |Crime            |
           |CX3                 |All law          |
           
-@needsclarifying         
+@needtoclarify          
 Scenario Outline: Enter the exact postcode for the court or tribunal and its detail page is displayed  
 
           Given I am on the courtfinder search page
