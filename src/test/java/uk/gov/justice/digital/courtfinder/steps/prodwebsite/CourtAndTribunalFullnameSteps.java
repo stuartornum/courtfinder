@@ -1,10 +1,10 @@
-package uk.gov.justice.digital.courtfinder.steps;
+package uk.gov.justice.digital.courtfinder.steps.prodwebsite;
 
 import org.openqa.selenium.WebDriver;
 
 import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
 import uk.gov.justice.digital.courtfinder.factories.PageFactory;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
 import cucumber.api.java.en.When;
 import cucumber.api.PendingException;

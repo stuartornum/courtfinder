@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.courtfinder.steps;
+package uk.gov.justice.digital.courtfinder.steps.prodwebsite;
 
 import cucumber.api.PendingException;
 import cucumber.api.java.en.*;
@@ -10,8 +10,8 @@ import org.openqa.selenium.WebDriver;
 import uk.gov.justice.digital.courtfinder.factories.FakeDataFactory;
 import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
 import uk.gov.justice.digital.courtfinder.factories.PageFactory;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchResultPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchResultPage;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
 
 public class FullPostcodeSearchSteps {

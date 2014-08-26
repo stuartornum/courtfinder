@@ -1,7 +1,7 @@
 Feature: As a researcher I need to gather all the Health, administrative appeals decisions
          so I can store them for future retrieval
 
-@todo        
+       
 Scenario: verify and collect decisions
 
          Given I am on 4272 administrative appeals record

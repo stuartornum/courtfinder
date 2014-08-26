@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.courtfinder.pages;
+package uk.gov.justice.digital.courtfinder.pages.prodwedsite;
 
 import java.util.List;
 

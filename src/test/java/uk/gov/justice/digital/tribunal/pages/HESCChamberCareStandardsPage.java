@@ -1,37 +1,43 @@
-package uk.gov.justice.digital.courtfinder.pages;
+package uk.gov.justice.digital.tribunal.pages;
+
+import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
-public class FinanceAndTaxTribunalPage extends SeleniumPage {
+public class HESCChamberCareStandardsPage extends SeleniumPage{
 
-	private By pageTitle = new By.ByXPath("html/body/h1");
+	public HESCChamberCareStandardsPage(WebDriver driver) {
+		super(driver);
+	}
+	
+	private By pageTitle = new By.ByXPath(".//*[@id='contentarea']/h1");
 	private String expectedPageTitle = "Decision Summary Information";
 	private By decisionNumber = new By.ByXPath(
-			".//*[@id='Table1']/tbody/tr[1]/td[2]");
-	private By appellant = new By.ByXPath(
-			".//*[@id='Table1']/tbody/tr[2]/td[2]");
-	private By respondent = new By.ByXPath(
-			".//*[@id='Table1']/tbody/tr[3]/td[2]");
-	private By chair = new By.ByXPath(".//*[@id='Table1']/tbody/tr[4]/td[2]");
+			".//*[@id='contentarea']/table/tbody/tr[1]/td");
+	private By decisionName = new By.ByXPath(".//*[@id='contentarea']/table/tbody/tr[2]/td");
 	private By dateOfDecision = new By.ByXPath(
-			".//*[@id='Table1']/tbody/tr[5]/td[2]");
+			".//*[@id='contentarea']/table/tbody/tr[3]/td");	
+	private By schedule = new By.ByXPath(".//*[@id='contentarea']/table/tbody/tr[4]/td");
+
 	private By mainCategory = new By.ByXPath(
-			".//*[@id='Table1']/tbody/tr[6]/td[2]");
+			".//*[@id='contentarea']/table/tbody/tr[5]/td");
 	private By subCategory = new By.ByXPath(
-			".//*[@id='Table1']/tbody/tr[7]/td[2]");
-	private By summary = new By.ByXPath(".//*[@id='Table1']/tbody/tr[8]/td[2]");
-	private By link = new By.ByXPath(".//*[@id='Table1']/tbody/tr[9]/td[2]/a");
+			".//*[@id='contentarea']/table/tbody/tr[6]/td");
+	private By summary = new By.ByXPath(".//*[@id='contentarea']/table/tbody/tr[7]/td");
+	private By link = new By.ByXPath(".//*[@id='contentarea']/table/tbody/tr[8]/td/a");
 
 	public String getDecisionNumber() throws Exception {
 		return getText(decisionNumber).trim();
 	}
+	
+	public String getDecisionName() throws Exception {
+		return getText(decisionName).trim();
+	}	
 	
 	public String getLink(){
 		String decisionLink = "";
@@ -57,18 +63,6 @@ public class FinanceAndTaxTribunalPage extends SeleniumPage {
 		return getText(summary).replace("\n", " ").replace("\r", " ");
 	}
 
-	public String getAppellant() throws Exception {
-		return getText(appellant).trim();
-	}
-
-	public String getRespondent() throws Exception {
-		return getText(respondent).trim();
-	}
-
-	public String getChair() throws Exception {
-		return getText(chair).trim();
-	}
-
 	public String getDateOfDecision() throws Exception {
 		return getText(dateOfDecision).trim();
 	}
@@ -76,16 +70,17 @@ public class FinanceAndTaxTribunalPage extends SeleniumPage {
 	public String getMainCategory() throws Exception {
 		return getText(mainCategory).trim();
 	}
+	
+	public String getSchedule() throws Exception {
+		return getText(schedule);
+	}	
 
 	public String getSubCategory() throws Exception {
 		return getText(subCategory);
 	}
 
-	public FinanceAndTaxTribunalPage(WebDriver driver) {
-		super(driver);
-	}
-
 	public boolean verifyOnPage() throws Exception {
+		waitForPageLoaded();
 		try
 		{
 		   return isTextContainedInInnerText(pageTitle, expectedPageTitle);
@@ -103,19 +98,18 @@ public class FinanceAndTaxTribunalPage extends SeleniumPage {
 	public String getRecord() throws Exception{
 		StringBuilder builder = new StringBuilder();
 		builder.append(getDecisionNumber() + "||");
-		builder.append(getAppellant() + "||");
-		builder.append(getRespondent() + "||");
-		builder.append(getChair() +  "||");
+		builder.append(getDecisionName() + "||");		
 		builder.append(getDateOfDecision() +"||");
+		builder.append(getSchedule() +"||");		
 		builder.append(getMainCategory() + "||");
 		builder.append(getSubCategory() + "||");
 		builder.append(getSummary() + "||");
 		builder.append(getLink() );
-		//System.out.println(builder.toString());
+		System.out.println(builder.toString());
 		return builder.toString();
 	}
 
-	public boolean verifyTaxAndFinanceRecord(List<List<String>> values)
+	public boolean verifyHSEChamberCareStandardRecord(List<List<String>> values)
 			throws Exception {
 		for (int index = 1; index < values.size(); index++) {
 			String fieldValue = values.get(index).get(1).trim();
@@ -127,44 +121,50 @@ public class FinanceAndTaxTribunalPage extends SeleniumPage {
 				break;
 			}
 			case 2: {
-				if (!fieldValue.contains(getAppellant()))
+				if (!fieldValue.contains(getDecisionName()))
 					throw new Exception(systemMessage(fieldValue,
-							getAppellant()));
+							getDecisionName()));
 				break;
 			}
 			case 3: {
-				if (!fieldValue.contains(getRespondent()))
-					throw new Exception(systemMessage(fieldValue,
-							getRespondent()));
-				break;
-			}
-			case 4: {
-				if (!fieldValue.contains(getChair()))
-					throw new Exception(systemMessage(fieldValue,
-							getChair()));
-				break;
-			}
-			case 5: {
 				if (!fieldValue.contains(getDateOfDecision()))
 					throw new Exception(systemMessage(fieldValue,
 							getDateOfDecision()));
 				break;
 			}
-			case 6: {
+			case 4: {
+				if (!fieldValue.contains(getSchedule()))
+					throw new Exception(systemMessage(fieldValue,
+							getSchedule()));
+				break;
+			}			
+			case 5: {
 				if (!fieldValue.contains(getMainCategory()))
 					throw new Exception(systemMessage(fieldValue,
 							getMainCategory()));
 				break;
 			}
-			case 7: {
+			case 6: {
 				if (!fieldValue.contains(getSubCategory()))
 					throw new Exception(systemMessage(fieldValue,
 							getSubCategory()));
+				break;
+			}	
+			case 7: {
+				if (!fieldValue.contains(getSummary()))
+					throw new Exception(systemMessage(fieldValue,
+							getSummary()));
+				break;
+			}
+			case 8: {
+				if (!fieldValue.contains(getLink()))
+					throw new Exception(systemMessage(fieldValue,
+							getLink()));
 				break;
 			}			
 			}
 		}
 		return true;
-	}
+	}	
 
 }

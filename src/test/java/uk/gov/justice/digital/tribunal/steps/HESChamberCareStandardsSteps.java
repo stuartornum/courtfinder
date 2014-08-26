@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.courtfinder.steps;
+package uk.gov.justice.digital.tribunal.steps;
 
 import static org.junit.Assert.assertTrue;
 import cucumber.api.PendingException;

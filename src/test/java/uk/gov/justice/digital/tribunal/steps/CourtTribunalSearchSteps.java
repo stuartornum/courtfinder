@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.courtfinder.steps;
+package uk.gov.justice.digital.tribunal.steps;
 
 import static org.junit.Assert.assertTrue;
 
@@ -8,7 +8,7 @@ import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
 import uk.gov.justice.digital.courtfinder.factories.PageFactory;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.webdriver.SharedDriver;
 
 public class CourtTribunalSearchSteps {

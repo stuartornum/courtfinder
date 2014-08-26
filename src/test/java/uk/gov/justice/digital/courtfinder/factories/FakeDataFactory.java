@@ -26,5 +26,9 @@ public class FakeDataFactory {
 	public static String getPostcode(){
 		return "CM233FE";
 	}
+	
+	public static String getCourtFinderStartPageUrl(){
+		return "https://courttribunalfinder.service.gov.uk/";
+	}
 
 }

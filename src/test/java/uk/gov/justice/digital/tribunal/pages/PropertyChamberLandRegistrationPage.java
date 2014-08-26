@@ -1,4 +1,4 @@
-package uk.gov.justice.digital.courtfinder.pages;
+package uk.gov.justice.digital.tribunal.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByXPath;

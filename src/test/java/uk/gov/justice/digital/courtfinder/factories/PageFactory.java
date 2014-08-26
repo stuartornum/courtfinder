@@ -2,13 +2,20 @@ package uk.gov.justice.digital.courtfinder.factories;
 
 import org.openqa.selenium.WebDriver;
 
-import uk.gov.justice.digital.courtfinder.pages.AdministrativeAppealPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtDetailsPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchResultPage;
-import uk.gov.justice.digital.courtfinder.pages.FinanceAndTaxTribunalPage;
-import uk.gov.justice.digital.courtfinder.pages.HESCChamberCareStandardsPage;
-import uk.gov.justice.digital.courtfinder.pages.PropertyChamberLandRegistrationPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderListViewPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderNameAndAddressSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderPostcodeSearchResultPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchErrorPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderStartPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtfinderPostcodSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtfinderSearchSelectionPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtDetailsPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchResultPage;
+import uk.gov.justice.digital.tribunal.pages.AdministrativeAppealPage;
+import uk.gov.justice.digital.tribunal.pages.FinanceAndTaxTribunalPage;
+import uk.gov.justice.digital.tribunal.pages.HESCChamberCareStandardsPage;
+import uk.gov.justice.digital.tribunal.pages.PropertyChamberLandRegistrationPage;
 
 public class PageFactory {
     
@@ -38,6 +45,34 @@ public class PageFactory {
 	
 	public static AdministrativeAppealPage getAdministrativeAppealPage(WebDriver driver){
 		return new AdministrativeAppealPage(driver);
+	}
+	
+	public static CourtFinderStartPage getCourtFinderStartPage(WebDriver driver){
+		return new CourtFinderStartPage(driver);
+	}
+	
+	public static CourtfinderSearchSelectionPage getCourtfinderSearchSelectionPage(WebDriver driver){
+		return new CourtfinderSearchSelectionPage(driver);
+	}	
+	
+	public static CourtfinderPostcodSearchPage getCourtfinderPostcodSearchPage(WebDriver driver){
+		return new CourtfinderPostcodSearchPage(driver);
+	}	
+	
+	public static CourtFinderListViewPage getCourtFinderListViewPage(WebDriver driver){
+		return new CourtFinderListViewPage(driver);
+	}	
+
+	public static CourtFinderNameAndAddressSearchPage getCourtFinderNameAndAddressSearchPage(WebDriver driver){
+		return new CourtFinderNameAndAddressSearchPage(driver);
+	}
+
+	public static CourtFinderPostcodeSearchResultPage getCourtFinderPostcodeSearchResultPage(WebDriver driver){
+		return new CourtFinderPostcodeSearchResultPage(driver);
+	}	
+	
+	public static CourtFinderSearchErrorPage getCourtFinderSearchErrorPage(WebDriver driver){
+		return new CourtFinderSearchErrorPage(driver);
 	}	
 	
 }
