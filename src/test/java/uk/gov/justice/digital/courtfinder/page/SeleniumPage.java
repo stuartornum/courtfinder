@@ -52,16 +52,15 @@ public class SeleniumPage {
     	driver.get(sURL);
     }
 
-	private WebElement findElement(By by) {
+	private WebElement findElement(By by) throws Exception {
 		try {
 			return driver.findElement(by);
 		} catch (NoSuchElementException nse) {
-			assertFalse("Unable to find element : " + by.toString(), true);
+			throw new Exception("Unable to find element : " + by.toString());
 		}
-		return null;
 	}
 
-	public void dragElementDown(By by, int numberOfPixelsToDragTheScrollbarDown) {
+	public void dragElementDown(By by, int numberOfPixelsToDragTheScrollbarDown) throws Exception {
 		Actions dragger = new Actions(driver);
 		WebElement draggablePartOfScrollbar = findElement(by);
 		dragger.moveToElement(draggablePartOfScrollbar).clickAndHold()
@@ -87,19 +86,19 @@ public class SeleniumPage {
 		return driver.getTitle();
 	}
 
-	public boolean isInnerTextEmpty(By by) {
+	public boolean isInnerTextEmpty(By by) throws Exception {
 		return findElement(by).getText().isEmpty();
 	}
 
-	public void setSelectOptionByIndex(By by, int index) {
+	public void setSelectOptionByIndex(By by, int index) throws Exception {
 		new Select(findElement(by)).selectByIndex(index);
 	}
 
-	public void setSelectOptionByVisibleText(By by, String selection) {
+	public void setSelectOptionByVisibleText(By by, String selection) throws Exception {
 		new Select(findElement(by)).selectByVisibleText(selection);
 	}
 
-	public void setSelectOptionByValue(By by, String value) {
+	public void setSelectOptionByValue(By by, String value) throws Exception {
 		new Select(findElement(by)).selectByValue(value);
 	}
 
@@ -114,15 +113,15 @@ public class SeleniumPage {
 		return l.size();
 	}
 	
-	public boolean isSelected(By by) {
+	public boolean isSelected(By by) throws Exception {
 		return findElement(by).isSelected();
 	}
 
-	public boolean isDisplayed(By by) {
+	public boolean isDisplayed(By by) throws Exception {
 		return findElement(by).isDisplayed();
 	}
 
-	public boolean isEnabled(By by) {
+	public boolean isEnabled(By by) throws Exception {
 		return findElement(by).isEnabled();
 	}
 
@@ -131,7 +130,7 @@ public class SeleniumPage {
 				.contains(expectedText);
 	}
 
-	public boolean isInnerTextEqualToExpectedText(By by, String expectedText) {
+	public boolean isInnerTextEqualToExpectedText(By by, String expectedText) throws Exception {
 		String textValue = findElement(by).getText().trim();
 		if ((textValue != null) && (textValue.equalsIgnoreCase(expectedText))) {
 			return true;
@@ -190,7 +189,7 @@ public class SeleniumPage {
 		return driver.findElements(by).isEmpty();
 	}
 
-	public WebElement getElement(By by) {
+	public WebElement getElement(By by) throws Exception {
 		return findElement(by);
 	}
 
@@ -198,7 +197,7 @@ public class SeleniumPage {
 		return driver.findElements(by);
 	}
 
-	public String getText(By by) {
+	public String getText(By by) throws Exception {
 		return findElement(by).getText();
 	}
 
@@ -210,7 +209,7 @@ public class SeleniumPage {
 			return value;
 	}
 
-	public void setText(By by, String inText) {
+	public void setText(By by, String inText) throws Exception {
 		findElement(by).clear();
 		findElement(by).sendKeys(inText);
 	}
@@ -228,7 +227,7 @@ public class SeleniumPage {
 	}
 
 
-	public boolean isElementPresent(By by) {
+	public boolean isElementPresent(By by) throws Exception {
 		try {
 			findElement(by);
 		} catch (NoSuchElementException e) {
@@ -237,7 +236,7 @@ public class SeleniumPage {
 		return true;
 	}
 
-	public void click(By by) {
+	public void click(By by) throws Exception {
 		if (ConfigurationFactory.getWebDriverName().equalsIgnoreCase(ConfigurationFactory.chromeBrowser)){
 			WebElement element = driver.findElement(by);
 
@@ -249,7 +248,7 @@ public class SeleniumPage {
 		
 	}
 
-	public boolean verifyOnPageByElement(By by) {
+	public boolean verifyOnPageByElement(By by) throws Exception {
 		waitForPageLoaded();
 		return isElementPresent(by);
 	}

@@ -1,4 +1,4 @@
- @todo 
+
 Feature: As a user I need to be able to make a postcode and area of law search 
          so that it will give a list of the closest court/tribunals 
          regardless of jurisdiction
@@ -16,6 +16,7 @@ Scenario Outline: Entering a valid postcode and area of law returns expected cou
           |SW1H9AJ |Children         |Central Family Court                                       |
           |SW1H9AJ |Civil partnership|Central Family Court,Brighton Family Court                 |
           |CA488RT |Bankruptcy       |Aberystwyth Justice Centre                                 |
+                   
 
         
 Scenario Outline: Entering an Northern Ireland postcode and area of law will return an error 
@@ -23,6 +24,12 @@ Scenario Outline: Entering an Northern Ireland postcode and area of law will ret
           Given I am on the courtfinder search page
           When I enter a Northern Ireland postcode "<postcode>" and area of law "<law>"
           Then I am returned an error message that Northern Ireland is not supported
+          
+ #          "Aside from immigration tribunals, 
+ #           this tool does not return results for Northern Ireland. 
+ #           Other courts and tribunals in Northern Ireland are handled 
+ #           by the Northern Ireland Courts and Tribunals Service."
+          
           
          Examples:
          |postcode|law               | 
@@ -111,11 +118,13 @@ Scenario Outline: The number of results found for a postcode search should be di
           |BT21     |Immigration      |4     |
 
          
-Scenario Outline: The number of results found for a postcode search should be displayed   
+Scenario Outline: Error for postcode returning no results  
 
           Given I am on the courtfinder search page
           When I enter an invalid postcode "<postcode>" with an area of law "<law>"
           Then I am prompted that the postcode could not be found
+          
+ #        xxxxx is not a valid postcode, please check and try another postcode.          
           
           Examples:
           |postcode            |law              |

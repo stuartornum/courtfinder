@@ -1,4 +1,4 @@
- @todo
+
 Feature: As a user I need to search for a court by name
          So I can view the full details of the services and amenities it offers
  
@@ -29,4 +29,4 @@ Feature: As a user I need to search for a court by name
           |PartialName  |CourtOrTribunal                           | 
           |aber         |Aberdeen Tribunal Hearing Centre          |         
           |Car          |Cardiff Probate Registry of Wales         |
-          |tam          |Tameside County Court and Family Court    |
+          |t            |Tameside County Court and Family Court    |

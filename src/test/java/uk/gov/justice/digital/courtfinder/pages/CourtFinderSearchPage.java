@@ -46,23 +46,23 @@ public class CourtFinderSearchPage extends SeleniumPage {
 		return isTextContainedInInnerText(areaOfLawErrorText, expectedAreaOfLawErrorText);
 	}
 	
-	public boolean isSearchButtonEnabled(){
+	public boolean isSearchButtonEnabled() throws Exception{
 		return isEnabled(searchButton);
 	}
 	
-	public void clickSearchButton(){
+	public void clickSearchButton() throws Exception{
 		click(searchButton);
 	}
 	
-	public void clickAreaOfLawDropDown(){
+	public void clickAreaOfLawDropDown() throws Exception{
 		click(areaOfLawDropDown);
 	}
 	
-	public void setSelectionByVisibleText(String selection){
+	public void setSelectionByVisibleText(String selection) throws Exception{
 		setSelectOptionByVisibleText(areaOfLawDropDown, selection);
 	}
 	
-	public void setSearchText(String searchText){
+	public void setSearchText(String searchText) throws Exception{
 		setText(searchTextBox, searchText);
 	}
 	
@@ -72,7 +72,7 @@ public class CourtFinderSearchPage extends SeleniumPage {
 		super(driver);
 	}
 	
-	public boolean verifyOnPage(){
+	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
 		return this.isInnerTextEqualToExpectedText(searchPageTitle, expectedSearchTitleText);
 	}

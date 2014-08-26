@@ -17,7 +17,7 @@ public class CourtDetailsPage extends SeleniumPage{
 		super(driver);
 	}
 	
-	public boolean verifyOnPage(String court) throws InterruptedException{
+	public boolean verifyOnPage(String court) throws Exception{
 		waitForPageLoaded();
 		return isInnerTextEqualToExpectedText(courtHeaderText, court);
 	}

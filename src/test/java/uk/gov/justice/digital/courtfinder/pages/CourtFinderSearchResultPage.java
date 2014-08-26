@@ -35,12 +35,12 @@ public class CourtFinderSearchResultPage extends SeleniumPage{
 		return -1;
 	}
 	
-	public void clickViewDetailsLink(String court){
+	public void clickViewDetailsLink(String court) throws Exception{
 		int position = positionOfCountInResultList(court);
 		click(new By.ByXPath(String.format(viewDetailsLink, position)));
 	}
 	
-	public boolean isNorthernIrelandErrorTextVisible(){
+	public boolean isNorthernIrelandErrorTextVisible() throws Exception{
 		return getText(errorMessageForNI).equalsIgnoreCase(expectedErrorMessageForNI);
 	}
 	
@@ -48,12 +48,12 @@ public class CourtFinderSearchResultPage extends SeleniumPage{
 		super(driver);
 	}
 	
-	public String getCourtNameAtIndex(int index){
+	public String getCourtNameAtIndex(int index) throws Exception{
 		String text = getText(new By.ByXPath(String.format(searchResultItem, index))); 
 		return text;
 	}
 	
-	public boolean verifyOnPage(){
+	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
 		return isInnerTextEqualToExpectedText(searchResultPageTitle, expectedSearchResultPageTitle);
 	}
