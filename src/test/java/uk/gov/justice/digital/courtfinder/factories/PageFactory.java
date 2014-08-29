@@ -2,13 +2,16 @@ package uk.gov.justice.digital.courtfinder.factories;
 
 import org.openqa.selenium.WebDriver;
 
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchResultPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderCourtDetailsPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderListViewPage;
-import uk.gov.justice.digital.courtfinder.pages.CourtFinderNameAndAddressSearchPage;
+import uk.gov.justice.digital.courtfinder.pages.CourtFinderAddressSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderPostcodeSearchResultPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderSearchErrorPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtFinderStartPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtfinderPostcodSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.CourtfinderSearchSelectionPage;
+import uk.gov.justice.digital.courtfinder.pages.prodwedsite.AlphabeticalCourtListPage;
 import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtDetailsPage;
 import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchPage;
 import uk.gov.justice.digital.courtfinder.pages.prodwedsite.CourtFinderSearchResultPage;
@@ -63,8 +66,8 @@ public class PageFactory {
 		return new CourtFinderListViewPage(driver);
 	}	
 
-	public static CourtFinderNameAndAddressSearchPage getCourtFinderNameAndAddressSearchPage(WebDriver driver){
-		return new CourtFinderNameAndAddressSearchPage(driver);
+	public static CourtFinderAddressSearchPage getCourtFinderNameAndAddressSearchPage(WebDriver driver){
+		return new CourtFinderAddressSearchPage(driver);
 	}
 
 	public static CourtFinderPostcodeSearchResultPage getCourtFinderPostcodeSearchResultPage(WebDriver driver){
@@ -73,6 +76,19 @@ public class PageFactory {
 	
 	public static CourtFinderSearchErrorPage getCourtFinderSearchErrorPage(WebDriver driver){
 		return new CourtFinderSearchErrorPage(driver);
-	}	
+	}
+	
+	public static CourtFinderCourtDetailsPage getCourtFinderCourtDetailsPage(WebDriver driver){
+		return new CourtFinderCourtDetailsPage(driver);
+	}
+	
+	public static AlphabeticalCourtListPage getAlphabeticalCourtListPage(WebDriver driver){
+		  return new AlphabeticalCourtListPage(driver);
+	}
+
+	public static CourtFinderAddressSearchResultPage getCourtFinderAddressSearchResultPage(
+			WebDriver driver) {
+		return new CourtFinderAddressSearchResultPage(driver);
+	}
 	
 }

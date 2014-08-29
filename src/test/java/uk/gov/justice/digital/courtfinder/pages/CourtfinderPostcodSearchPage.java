@@ -8,29 +8,30 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	
-	private By searchPostcode = new By.ById("");
+	private By searchPostcode = new By.ByXPath(".//*[@name='postcode']");
 	
-	private By filterAllCourts = new By.ByXPath("");
+	private By filterAllCourts = new By.ById("aol-0");
 	private By filterYourLegalProblem = new By.ByXPath("");
-	private By filterAdoption = new By.ByXPath("");
-	private By filterBankruptcy = new By.ByXPath("");
-	private By filterCivilPartnerships = new By.ByXPath("");
-	private By filterChildren = new By.ByXPath("");
-	private By filterCrime = new By.ByXPath("");
-	private By filterDivorce = new By.ByXPath("");
-	private By filterDomesticViolence = new By.ByXPath("");
-	private By filterEmployment = new By.ByXPath("");
-	private By filterForcedMarriage = new By.ByXPath("");
-	private By filterHousingPossession = new By.ByXPath("");
-	private By filterImmigration = new By.ByXPath("");
-	private By filterMoneyClaims = new By.ByXPath("");
-	private By filterProbate = new By.ByXPath("");
-	private By filterSocialSecurity = new By.ByXPath("");
+	private By filterAdoption = new By.ByXPath(".//*[@value='Adoption']");
+	private By filterBankruptcy = new By.ByXPath(".//*[@value='Bankruptcy']");
+	private By filterCivilPartnerships = new By.ByXPath(".//*[@value='Civil partnership']");
+	private By filterChildren = new By.ByXPath(".//*[@value='Children']");
+	private By filterCrime = new By.ByXPath(".//*[@value='Crime']");
+	private By filterDivorce = new By.ByXPath(".//*[@value='Divorce']");
+	private By filterDomesticViolence = new By.ByXPath(".//*[@value='Domestic violence']");
+	private By filterEmployment = new By.ByXPath(".//*[@value='Employment']");
+	private By filterForcedMarriage = new By.ByXPath(".//*[@value='Forced marriage']");
+	private By filterHousingPossession = new By.ByXPath(".//*[@value='Housing possession']");
+	private By filterImmigration = new By.ByXPath(".//*[@value='Immigration']");
+	private By filterMoneyClaims = new By.ByXPath(".//*[@value='Money claims']");
+	private By filterProbate = new By.ByXPath(".//*[@value='Probate']");
+	private By filterSocialSecurity = new By.ByXPath(".//*[@value='Social security']");
+//	private By filterHighCourt = new By.ByXPath(".//*[@value='High Court']");
 	
 	private By continueButton = new By.ById("continue");
 	
-	private By pageTitle = new By.ByXPath("");
-	private String expectedPageTitle = "";
+	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/fieldset/label[1]/div[1]");
+	private String expectedPageTitle = "Search by postcode";
 	
 	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
@@ -115,7 +116,7 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	}
 	
 	private void setSpecificAreaOfLaw(String areaOfLaw) throws Exception{
-		selectYourLegalProm();
+		//selectYourLegalProm();
 		if (areaOfLaw.equalsIgnoreCase("adoption"))
 			selectAdoption();
 		else if (areaOfLaw.equalsIgnoreCase("bankruptcy"))
@@ -147,10 +148,11 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 		else
 			throw new Exception("Unknown area of law : " + areaOfLaw);
 	}
+		
 
 	public void setAreaOfLaw(String areaOfLaw) throws Exception {
 		String aol = areaOfLaw.toLowerCase().trim();
-		if (aol.equalsIgnoreCase("all courts and tirbunals")){
+		if (aol.equalsIgnoreCase("all courts and tribunals")){
 			selectAllCourts();
 		}else{
 			setSpecificAreaOfLaw(aol);

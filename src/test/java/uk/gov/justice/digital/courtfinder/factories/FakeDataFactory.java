@@ -28,7 +28,11 @@ public class FakeDataFactory {
 	}
 	
 	public static String getCourtFinderStartPageUrl(){
-		return "https://courttribunalfinder.service.gov.uk/";
+		return "http://54.72.152.89/";
+	}
+	
+	public static String getAlphabeticalCourtsListUrl(){
+		return "https://courttribunalfinder.service.gov.uk/courts";
 	}
 
 }

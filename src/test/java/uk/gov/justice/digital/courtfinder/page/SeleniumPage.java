@@ -26,6 +26,10 @@ import org.openqa.selenium.support.ui.Select;
 
 import uk.gov.justice.digital.courtfinder.factories.ConfigurationFactory;
 
+import java.awt.image.BufferedImage;
+
+import javax.imageio.ImageIO;
+
 
 
 
@@ -352,6 +356,21 @@ public class SeleniumPage {
         return presentFlag;
 
     }
+    
+    
+    //DownloadImage(By.xpath("//*[@id='content']/div/div[1]/div/div/div[1]/img"),"D:\\Download\\image.png");
+    
+    public void DownloadImage(By by,String saveFilename) throws Exception{
+    	WebElement Image=driver.findElement(by);
+    	File screen=((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+       int width=Image.getSize().getWidth();
+       int height=Image.getSize().getHeight();
+       BufferedImage img=ImageIO.read(screen);
+       BufferedImage dest=img.getSubimage(Image.getLocation().getX(), Image.getLocation().getY(), width, height);
+       ImageIO.write(dest, "png", screen);
+       File file=new File(saveFilename);
+        FileUtils.copyFile(screen,file);
+    }    
     
     public void refresh()
     {

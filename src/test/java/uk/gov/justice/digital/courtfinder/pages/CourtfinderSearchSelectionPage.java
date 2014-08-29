@@ -8,7 +8,7 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class CourtfinderSearchSelectionPage extends SeleniumPage {
 	
-	private By pageTitle = new By.ByXPath("");
+	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/div/h2");
 	private String expectedPageTitle =  "Choose the type of search you would like to do";
 	
 	private By postcodeSearch = new By.ById("postcode-search");
@@ -16,7 +16,7 @@ public class CourtfinderSearchSelectionPage extends SeleniumPage {
 	private By listView       = new By.ById("list-view");
 	
 	
-	private By continueButton  = new By.ByXPath("continue");
+	private By continueButton  = new By.ById("continue");
 	
 	
 	public void clickPostcodeSearch() throws Exception{

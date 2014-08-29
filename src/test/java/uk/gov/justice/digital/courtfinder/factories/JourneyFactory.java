@@ -63,5 +63,18 @@ public class JourneyFactory {
 		page.clickPostcodeSearch();
 		page.clickContinueButton();
 	}
+	
+	public void getCourtFinderAddressSearchPageJourney() throws Exception{
+		getCourtFinderSearchSelecionPageJourney();
+		CourtfinderSearchSelectionPage page = new CourtfinderSearchSelectionPage(driver);
+		assertTrue("Unable to reach the search selection page",
+				  page.verifyOnPage());
+		page.clickaddressSearch();
+		page.clickContinueButton();
+	}
+	
+	public void getAlphabeticalCourtListPageJourney(){
+		driver.get(FakeDataFactory.getAlphabeticalCourtsListUrl());
+	}
 
 }

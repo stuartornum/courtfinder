@@ -11,7 +11,7 @@ import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class CourtFinderStartPage extends SeleniumPage {
 	
-	private By pageTitle = new By.ByXPath("");
+	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/header/h1");
 	private String expectedPageTitleText = "Find a court or tribunal";
 	
 	private By startButton = new By.ById("start-button");
