@@ -1,4 +1,4 @@
-@todo
+
 Feature:  As a user that has started the court finder journey
           I need to select what type of search 
           So that I can find my court using the criterion I know

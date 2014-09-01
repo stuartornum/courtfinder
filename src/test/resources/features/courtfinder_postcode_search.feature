@@ -1,4 +1,4 @@
-@todo
+
 Feature: As a user I need to be able to make a postcode and area of law search 
          so that it will give a list of the closest court/tribunals 
 
