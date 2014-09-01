@@ -8,7 +8,6 @@ import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import com.sun.org.apache.xml.internal.security.utils.HelperNodeList;
 
 import uk.gov.justice.digital.courtfinder.helpers.CourtResultHelper;
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
