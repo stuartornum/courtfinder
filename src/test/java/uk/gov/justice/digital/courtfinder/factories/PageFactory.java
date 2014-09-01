@@ -66,7 +66,7 @@ public class PageFactory {
 		return new CourtFinderListViewPage(driver);
 	}	
 
-	public static CourtFinderAddressSearchPage getCourtFinderNameAndAddressSearchPage(WebDriver driver){
+	public static CourtFinderAddressSearchPage getCourtFinderAddressSearchPage(WebDriver driver){
 		return new CourtFinderAddressSearchPage(driver);
 	}
 

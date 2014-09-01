@@ -7,8 +7,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.By.ByXPath;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
+import uk.gov.justice.digital.courtfinder.factories.JourneyFactory;
+import uk.gov.justice.digital.courtfinder.factories.PageFactory;
 import uk.gov.justice.digital.courtfinder.helpers.CourtResultHelper;
+import uk.gov.justice.digital.courtfinder.helpers.Storage;
 import uk.gov.justice.digital.courtfinder.page.SeleniumPage;
 
 public class AlphabeticalCourtListPage extends SeleniumPage {
@@ -33,22 +37,37 @@ public class AlphabeticalCourtListPage extends SeleniumPage {
 	}
 
 	public void selectLetter(String letter) throws Exception {
+		try{
 		click(new By.ByXPath(String.format(alphabeticalSelector, letter)));
+		}catch (Exception e)
+		{
+			//swallow any letters that are missing
+		}
 		
 	}
 
-	public void collectCourtDetailsOnPage(String letter) throws Exception {
+	public void collectCourtDetailsOnPage(String letter, String fileName) throws Exception {
 		String courtLetterLink = String.format(courtLink, letter);
 		List<WebElement> elements = getElements(new By.ByXPath(courtLetterLink));
 		for (int index = 1; index <= elements.size(); index++){
 			CourtResultHelper helper = new CourtResultHelper();
 			helper.setCourtName(getText(new By.ByXPath(courtLetterLink+"["+index+"]")));
-			helper.setCourtNameUrl(getAttributeValue(elements.get(index-1), "href"));
-			System.out.println(helper.asString());
-			System.out.println(helper.asJSONString());
-			//URL url = new URL("https://courtfinder-servicegovuk-production.s3.amazonaws.com/images/abergavenny_magistrates_court.jpg");
-			//System.out.println(url.);
+			helper.setCourtNameUrl(getAttributeValue(elements.get(index-1), "href"));			
+			retrieveAddressDetails(helper);
+			if (index == elements.size())
+			   Storage.append(fileName,helper.asJSONString());
+			else
+			   Storage.append(fileName,helper.asJSONString()+",");	
 		}
+	}
+
+	private void retrieveAddressDetails(CourtResultHelper helper) throws Exception {
+		WebDriver firefox = new FirefoxDriver();
+		JourneyFactory journeyFactory = new JourneyFactory(firefox);
+		firefox.get(helper.getCourtNameUrl());
+		CourtDetailsPage page = PageFactory.getCourtDetailsPage(firefox);
+		page.scrapeDetails(helper);
+		firefox.close();
 	}
 
 }

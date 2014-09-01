@@ -90,6 +90,10 @@ public class SeleniumPage {
 		return driver.getTitle();
 	}
 
+	public void back(){
+		driver.navigate().back();
+	}
+	
 	public boolean isInnerTextEmpty(By by) throws Exception {
 		return findElement(by).getText().isEmpty();
 	}
@@ -231,10 +235,10 @@ public class SeleniumPage {
 	}
 
 
-	public boolean isElementPresent(By by) throws Exception {
+	public boolean isElementPresent(By by){
 		try {
 			findElement(by);
-		} catch (NoSuchElementException e) {
+		} catch (Exception e) {
 			return false;
 		}
 		return true;

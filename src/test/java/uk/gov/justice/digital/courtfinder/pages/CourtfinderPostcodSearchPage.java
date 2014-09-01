@@ -33,6 +33,9 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/fieldset/label[1]/div[1]");
 	private String expectedPageTitle = "Search by postcode";
 	
+	private By errorNoPostcodeEntered = new By.ByXPath(".//*[@class='validation-error']");
+	private String expectedErrorTextNoPostcodeEntered = "You did not enter a postcode. Please try again.";
+	
 	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
 		return isInnerTextEqualToExpectedText(pageTitle, expectedPageTitle);
@@ -159,6 +162,11 @@ public class CourtfinderPostcodSearchPage extends SeleniumPage {
 		}
 		
 		
+	}
+
+	public boolean verifyErrorPromptEnterPostcode() throws Exception {
+		waitToGetElement(errorNoPostcodeEntered, HTTP_TIMEOUT);
+		return isTextContainedInInnerText(errorNoPostcodeEntered, expectedErrorTextNoPostcodeEntered);
 	}
 
 }

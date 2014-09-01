@@ -87,8 +87,31 @@ public class CourtFinderPostcodeSearchSteps {
 	
 	@Then("^I am prompted that the searched postcode could not be found$")
 	public void i_am_prompted_that_the_searched_postcode_could_not_be_found() throws Throwable {
-	    // Write code here that turns the phrase above into concrete actions
-	    throw new PendingException();
+        assertTrue("No error message displayed for entering an invalid postcode",
+        		   PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyErrorNoResultsFound());
 	}
+	
+	@When("^I select continue$")
+	public void i_select_continue() throws Throwable {
+	    PageFactory.getCourtfinderPostcodSearchPage(driver).clickContinue();
+	}
+
+	@Then("^I am prompted to enter a postcode$")
+	public void i_am_prompted_to_enter_a_postcode() throws Throwable {
+	    assertTrue("No error message displayed for not entering a postcode"
+	    		   ,PageFactory.getCourtfinderPostcodSearchPage(driver).verifyErrorPromptEnterPostcode());
+	}
+	
+	@Then("^for the \"(.*?)\" the \"(.*?)\" and \"(.*?)\" are displayed$")
+	public void for_the_the_and_are_displayed(String court, String dx, String courtnumber) throws Throwable {
+	    assertTrue("Invalid dx number",PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyCourtDX(court,dx));
+	    assertTrue("Invalid court number",PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyCourtNumber(court,courtnumber));
+
+	}
+
+	@Then("^for the \"(.*?)\" the \"(.*?)\" is displayed$")
+	public void for_the_the_is_displayed(String court, String courtaddress) throws Throwable {
+	   assertTrue(PageFactory.getCourtFinderPostcodeSearchResultPage(driver).verifyCourtAddress(court,courtaddress));
+	}	
 
 }

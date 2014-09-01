@@ -9,6 +9,10 @@ public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 	
 	private By pageTitle = new By.ByXPath(".//*[@id='content']/div/form/label/div[2]");
 	private String expectedPageTitle = "Enter part of the court or tribunal name or address.";
+
+	private By errorInvalidAddress = new By.ByXPath(".//*[@id='content']/div/p");
+	private String expectedErrorTextInvalidAddress = "Sorry, there are no results for";
+	
 	
 	public boolean verifyOnPage() throws Exception{
 		waitForPageLoaded();
@@ -19,4 +23,8 @@ public class CourtFinderAddressSearchResultPage extends CourtFinderResultPage{
 		super(driver);
 	}
 
+	public boolean verifyErrorNoResultsFound() throws Exception {
+		return isTextContainedInInnerText(errorInvalidAddress, expectedErrorTextInvalidAddress);
+	}
+	
 }

@@ -54,7 +54,7 @@ public class CourtFinderSearchSelectionSteps {
 	@Then("^I am redirected to the name and address search page$")
 	public void i_am_redirected_to_the_name_and_address_search_page() throws Throwable {
 	    assertTrue("Unable to reach the name and address search page",
-	    		   PageFactory.getCourtFinderNameAndAddressSearchPage(driver).verifyOnPage());    
+	    		   PageFactory.getCourtFinderAddressSearchPage(driver).verifyOnPage());    
 	}
 
 	@When("^I select the list view  search and click continue$")
